@@ -16,13 +16,9 @@
 + (NSString *)User;
 
 @property (nonatomic) PFRelation <Item *>* favoriteItems;
-@property (nonatomic) PFGeoPoint * location;
-//@property User *currentUser;
+@property (nonatomic) PFGeoPoint * currentLocation;
+@property BOOL isABusiness;
 
-//-(void)signUp;
-//-(void) setLocation:(PFGeoPoint *)location;
-
-//-(instancetype)initWithUsername:(NSString *)username password:(NSString *)password email:(NSString *)email location:(PFGeoPoint *)location;
 
 
 @end

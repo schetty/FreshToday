@@ -16,8 +16,7 @@
 //Button is pressed in a specific cell then tells the View Controller to update the user's array of favorite items
 - (void)didClickOnCellAtIndex:(NSInteger)cellIndex withItemCell:(ItemTableViewCell *)itemCell;
 
-@optional
-- (void)didSelectAFavoriteItem:(Item*)item;
+
 
 
 

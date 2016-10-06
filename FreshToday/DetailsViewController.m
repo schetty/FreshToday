@@ -18,6 +18,7 @@
 
 @property BOOL isSetUp;
 
+@property (strong, nonatomic) IBOutlet UIImageView *businessImageView;
 
 
 @end

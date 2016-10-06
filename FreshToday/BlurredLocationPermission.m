@@ -12,6 +12,7 @@
 @interface BlurredLocationPermission () <CLLocationManagerDelegate>
 
 @property (nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) CLLocation *location;
 
 
 
@@ -76,11 +77,16 @@ static const NSString * storyboardName = @"MainStoryboard";
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     
-    CLLocation *location = locations.firstObject;
-    
-    [self segue:location];
-    
     [_locationManager stopUpdatingLocation];
+    
+    if (!self.location){
+        
+        self.location = locations.firstObject;
+        [self segue:self.location];
+
+    }
+    
+    
     
 }
 
@@ -88,7 +94,11 @@ static const NSString * storyboardName = @"MainStoryboard";
     if ([segue.identifier isEqualToString:@"showHomeVC"]) {
         HomeViewController *destinationViewController = [segue destinationViewController];
         CLLocation *location = (CLLocation *) sender;
+        
+        destinationViewController.location = location;
+        
         NSLog(@"Inside segue to HomeViewController");
+        
     }
     
 }

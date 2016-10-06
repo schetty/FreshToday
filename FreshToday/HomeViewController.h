@@ -14,7 +14,7 @@
 
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) 
+@property (strong, nonatomic) CLLocation *location;
 
 
 

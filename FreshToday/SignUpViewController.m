@@ -51,6 +51,9 @@
     }];
 }
 
+- (IBAction)isABusiness:(UISwitch *)sender {
+}
+
 - (IBAction)didPressSignUp:(UIButton *)sender {
     [self signUp];
 }

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3930DB9F1DA598A900AA6E6F /* NormalLocationPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3930DB9E1DA598A900AA6E6F /* NormalLocationPermission.m */; };
 		3930DBA21DA598C700AA6E6F /* BlurredLocationPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3930DBA11DA598C700AA6E6F /* BlurredLocationPermission.m */; };
 		3930DBA41DA5BD4E00AA6E6F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3930DBA31DA5BD4E00AA6E6F /* CoreLocation.framework */; };
+		3930DBA71DA5F56700AA6E6F /* AlternativeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3930DBA61DA5F56700AA6E6F /* AlternativeItem.m */; };
+		3930DBAA1DA6E1A700AA6E6F /* BusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3930DBA91DA6E1A700AA6E6F /* BusinessViewController.m */; };
 		39A090831DA499A700C8247C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39A090811DA499A700C8247C /* Main.storyboard */; };
 		39A090851DA4B4F900C8247C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A090841DA4B4F900C8247C /* MapKit.framework */; };
 		39E0FC031DA2DB7700CA2E4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC021DA2DB7700CA2E4E /* main.m */; };
@@ -21,7 +22,6 @@
 		39E0FC1F1DA2F33A00CA2E4E /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC1E1DA2F33A00CA2E4E /* Item.m */; };
 		39E0FC241DA2F66700CA2E4E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC231DA2F66700CA2E4E /* SignUpViewController.m */; };
 		39E0FC2A1DA2F7EC00CA2E4E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC291DA2F7EC00CA2E4E /* HomeViewController.m */; };
-		39E0FC2D1DA2F82300CA2E4E /* ListOfItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC2C1DA2F82300CA2E4E /* ListOfItemsViewController.m */; };
 		39E0FC301DA2F84200CA2E4E /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC2F1DA2F84200CA2E4E /* DetailsViewController.m */; };
 		39E0FC331DA31B6800CA2E4E /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC321DA31B6800CA2E4E /* LocationManager.m */; };
 		39E0FC3A1DA33E1800CA2E4E /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC391DA33E1800CA2E4E /* ItemTableViewCell.m */; };
@@ -29,11 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3930DB9D1DA598A900AA6E6F /* NormalLocationPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalLocationPermission.h; sourceTree = "<group>"; };
-		3930DB9E1DA598A900AA6E6F /* NormalLocationPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalLocationPermission.m; sourceTree = "<group>"; };
 		3930DBA01DA598C700AA6E6F /* BlurredLocationPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurredLocationPermission.h; sourceTree = "<group>"; };
 		3930DBA11DA598C700AA6E6F /* BlurredLocationPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurredLocationPermission.m; sourceTree = "<group>"; };
 		3930DBA31DA5BD4E00AA6E6F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3930DBA51DA5F56700AA6E6F /* AlternativeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlternativeItem.h; sourceTree = "<group>"; };
+		3930DBA61DA5F56700AA6E6F /* AlternativeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlternativeItem.m; sourceTree = "<group>"; };
+		3930DBA81DA6E1A700AA6E6F /* BusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessViewController.h; sourceTree = "<group>"; };
+		3930DBA91DA6E1A700AA6E6F /* BusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessViewController.m; sourceTree = "<group>"; };
 		39A090821DA499A700C8247C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39A090841DA4B4F900C8247C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		39B654FC1DA44EA200FA2FE8 /* favoriteItemProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = favoriteItemProtocol.h; sourceTree = "<group>"; };
@@ -54,8 +56,6 @@
 		39E0FC231DA2F66700CA2E4E /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		39E0FC281DA2F7EC00CA2E4E /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		39E0FC291DA2F7EC00CA2E4E /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		39E0FC2B1DA2F82300CA2E4E /* ListOfItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfItemsViewController.h; sourceTree = "<group>"; };
-		39E0FC2C1DA2F82300CA2E4E /* ListOfItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfItemsViewController.m; sourceTree = "<group>"; };
 		39E0FC2E1DA2F84200CA2E4E /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		39E0FC2F1DA2F84200CA2E4E /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		39E0FC311DA31B6800CA2E4E /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
@@ -130,6 +130,8 @@
 				39E0FC191DA2DD3C00CA2E4E /* User.m */,
 				39E0FC1D1DA2F33A00CA2E4E /* Item.h */,
 				39E0FC1E1DA2F33A00CA2E4E /* Item.m */,
+				3930DBA51DA5F56700AA6E6F /* AlternativeItem.h */,
+				3930DBA61DA5F56700AA6E6F /* AlternativeItem.m */,
 				39E0FC311DA31B6800CA2E4E /* LocationManager.h */,
 				39E0FC321DA31B6800CA2E4E /* LocationManager.m */,
 			);
@@ -148,14 +150,12 @@
 				39B654FC1DA44EA200FA2FE8 /* favoriteItemProtocol.h */,
 				39E0FC381DA33E1800CA2E4E /* ItemTableViewCell.h */,
 				39E0FC391DA33E1800CA2E4E /* ItemTableViewCell.m */,
-				39E0FC2B1DA2F82300CA2E4E /* ListOfItemsViewController.h */,
-				39E0FC2C1DA2F82300CA2E4E /* ListOfItemsViewController.m */,
 				39E0FC2E1DA2F84200CA2E4E /* DetailsViewController.h */,
 				39E0FC2F1DA2F84200CA2E4E /* DetailsViewController.m */,
-				3930DB9D1DA598A900AA6E6F /* NormalLocationPermission.h */,
-				3930DB9E1DA598A900AA6E6F /* NormalLocationPermission.m */,
 				3930DBA01DA598C700AA6E6F /* BlurredLocationPermission.h */,
 				3930DBA11DA598C700AA6E6F /* BlurredLocationPermission.m */,
+				3930DBA81DA6E1A700AA6E6F /* BusinessViewController.h */,
+				3930DBA91DA6E1A700AA6E6F /* BusinessViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -306,8 +306,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3930DB9F1DA598A900AA6E6F /* NormalLocationPermission.m in Sources */,
-				39E0FC2D1DA2F82300CA2E4E /* ListOfItemsViewController.m in Sources */,
 				39E0FC1F1DA2F33A00CA2E4E /* Item.m in Sources */,
 				39E0FC1A1DA2DD3C00CA2E4E /* User.m in Sources */,
 				39E0FC241DA2F66700CA2E4E /* SignUpViewController.m in Sources */,
@@ -315,9 +313,11 @@
 				39E0FC3A1DA33E1800CA2E4E /* ItemTableViewCell.m in Sources */,
 				3930DBA21DA598C700AA6E6F /* BlurredLocationPermission.m in Sources */,
 				39E0FC061DA2DB7700CA2E4E /* AppDelegate.m in Sources */,
+				3930DBA71DA5F56700AA6E6F /* AlternativeItem.m in Sources */,
 				39E0FC331DA31B6800CA2E4E /* LocationManager.m in Sources */,
 				39E0FC301DA2F84200CA2E4E /* DetailsViewController.m in Sources */,
 				39E0FC2A1DA2F7EC00CA2E4E /* HomeViewController.m in Sources */,
+				3930DBAA1DA6E1A700AA6E6F /* BusinessViewController.m in Sources */,
 				39E0FC031DA2DB7700CA2E4E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

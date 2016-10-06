@@ -12,7 +12,6 @@
 #import "ItemTableViewCell.h"
 #import "Item.h"
 #import "DetailsViewController.h"
-#import "ListOfItemsViewController.h"
 
 @interface HomeViewController ()
 
@@ -20,6 +19,7 @@
 @property (nonatomic) NSMutableArray * itemsForDisplay;
 @property (nonatomic) Item * selectedItem;
 @property (nonatomic) Item * cellSelectedItem;
+@property (nonatomic) DetailsViewController * destinationViewController;
 
 
 //for the SEARCH bar
@@ -30,6 +30,8 @@
 
 - (IBAction)didPressFindButton:(UIButton *)sender;
 
+- (void)setLocationForUser;
+
 @end
 
 
@@ -38,6 +40,76 @@
 
 static NSString * const segueToDetailsViewController = @"segueToDetailsViewController";
 
+#pragma Loading Stuff
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self getItemsFromParse];
+    [self getUserLocation];
+    [self setLocationForUser];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
+
+}
+
+
+
+
+#pragma Table View Stuff
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section  {
+    
+    return _itemsForDisplay.count;
+    
+    
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ItemTableViewCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"itemCell"];
+    
+    
+    Item *item = _itemsForDisplay[indexPath.row];
+    itemCell.itemNameLabel.text = item.name;
+    
+    itemCell.delegate = self;
+    itemCell.cellIndex = indexPath.row;
+    
+    return itemCell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
+    
+    self.cellSelectedItem = _itemsForDisplay[indexPath.row];
+    
+    [self performSegueWithIdentifier:segueToDetailsViewController sender: self];
+    
+    
+}
+
+
+- (void)didClickOnCellAtIndex:(NSInteger)cellIndex withItemCell:(ItemTableViewCell *)itemCell {
+    
+    NSLog(@"Cell at Index: %ld clicked.\n Data received : %@", (long)cellIndex, itemCell.textLabel.text);
+    
+    
+    self.selectedItem =_itemsForDisplay[cellIndex];
+    NSLog(@" HEEEREEEEEEEE %@", self.selectedItem.name);
+    
+    [self addItemToFavoritesInParse];
+}
+
+
+
+
+#pragma Parse Getting and Sending Items
 
 - (void)getItemsFromParse {
     
@@ -49,9 +121,9 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
             // The find succeeded.
             NSLog(@"Successfully retrieved %lu places.", (unsigned long) items.count);
             for (Item *item in items) {
+                
                 NSLog(@"%@", item.objectId);
                 
-                //                [self.itemsForDisplay addObject:item];
             }
             
             self.itemsForDisplay = [items mutableCopy];
@@ -64,106 +136,175 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
     }];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section  {
-    
-    return _itemsForDisplay.count;
-    
-    
-}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ItemTableViewCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"itemCell"];
-    
-
-    Item *item = _itemsForDisplay[indexPath.row];
-    itemCell.itemNameLabel.text = item.name;
-    
-    itemCell.delegate = self;
-    itemCell.cellIndex = indexPath.row;
-    
-    return itemCell;
-}
-
--(void)addItemToFavoritesInParse {
+- (void)addItemToFavoritesInParse {
     
     User *user = User.currentUser;
-
-        if (user != nil) {
     
-            PFRelation *relation = [user relationForKey:@"favoriteItems"];
-            if (self.selectedItem) {
-                [relation addObject:self.selectedItem];
-                [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded) {
-                        NSLog(@" User's favorite items are %@ ", user.favoriteItems);
-                        
-                    } else {
-                        NSLog(@"there is an error");
-                    }
-                }];
-
-            }
-            else {
-                NSLog(@"no selected Item");
-            }
+    if (user != nil) {
+        
+        PFRelation *relation = [user relationForKey:@"favoriteItems"];
+        if (self.selectedItem) {
+            [relation addObject:self.selectedItem];
+            [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    NSLog(@" User's favorite items are %@ ", user.favoriteItems);
+                    
+                } else {
+                    NSLog(@"there is an error");
+                }
+            }];
+            
         }
+        else {
+            NSLog(@"no selected Item");
+        }
+    }
     
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
-    
-    self.cellSelectedItem = _itemsForDisplay[indexPath.row];
-  
-    [self performSegueWithIdentifier:segueToDetailsViewController sender: self];
+#pragma Location Stuff
 
-//    DetailsViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"detailViewController"];
-//    [self presentViewController:vc animated:YES completion:nil];
+- (void) getUserLocation {
+    
+    
+    CLGeocoder *coder= [[CLGeocoder alloc] init];
+    [coder reverseGeocodeLocation:self.location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        CLPlacemark *placemark = [placemarks lastObject];
+        
+        NSLog(@"%@", placemark);
+       
+        
+        self.locationTextField.text = [NSString stringWithFormat:@"in %@", placemark.locality];
+    }];
+    
+    
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+- (void)setLocationForUser {
+    //CONVERTING CLLocation TO PFGeoPoint
+    //"For those who choose to use CLLocationManager directly, we also provide a +geoPointWithLocation: constructor to transform CLLocations directly into PFGeoPoints - great for apps that require constant polling."
+    
+    User *user = User.currentUser;
+    
+    if (user != nil){
+        //send the PFGeoPoint to Parse
+        user.currentLocation = [PFGeoPoint geoPointWithLocation:self.location];
+        [user addObject:user.currentLocation forKey:@"userLocation"];
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                
+                NSLog(@"successfully sent geopoint to user in parse");
+            }
+            
+            else {
+                
+                NSLog(@"something went wrong");
+            }
+            
+        }];
+        
+    }
+    
+}
+
+
+#pragma StoryBoard connects
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"segueToDetailsViewController"]) {
-        DetailsViewController *destinationViewController = [segue destinationViewController];
-        destinationViewController.item = self.cellSelectedItem;
+        self.destinationViewController = [segue destinationViewController];
+        self.destinationViewController.item = self.cellSelectedItem;
         NSLog(@"SEGUE TO DETAILS");
     }
     
-    if ([segue.identifier isEqualToString:@"segueToListViewController"]) {
-        ListOfItemsViewController *listViewController = [segue destinationViewController];
-
-        NSLog(@"SEARCH REQUESTED");
-    }
-
+    
 }
 
-- (void)didClickOnCellAtIndex:(NSInteger)cellIndex withItemCell:(ItemTableViewCell *)itemCell {
+
+
+- (IBAction)didPressFindButton:(UIButton *)sender {
+    [self queryItemFromParse];
+    [self viewDidAppear:YES];
     
-    NSLog(@"Cell at Index: %ld clicked.\n Data received : %@", (long)cellIndex, itemCell.textLabel.text);
+
     
- 
-    self.selectedItem =_itemsForDisplay[cellIndex];
-    NSLog(@" HEEEREEEEEEEE %@", self.selectedItem.name);
-    
-    [self addItemToFavoritesInParse];
 }
 
 
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
-    [self getItemsFromParse];
-    
-}
 
 
 #pragma search for an item in location
+
+
 ////THE SEARCH FUNCTION
 
-- (IBAction)didPressFindButton:(UIButton *)sender {
+
+- (void) queryItemFromParse {
+    NSString * searchItemName = self.searchItemTextField.text;
     
-    
-    
+    PFQuery *query1 = [PFQuery queryWithClassName:@"Item"];
+    [query1 whereKey:@"name" equalTo:searchItemName];
+    [query1 findObjectsInBackgroundWithBlock:^(NSArray *items, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved item name.");
+            NSString * searchItemType = [[NSString alloc] init];
+            
+            for (Item * item in items) {
+                searchItemType = item.type;
+                NSLog(@"%@", searchItemType);
+            }
+            
+        }
+        
+        PFQuery *query2 = [PFQuery queryWithClassName:@"Item"];
+        [query2 whereKey:@"type" matchesKey:@"type" inQuery:query1];
+        NSArray* moreOfTheSameType = [query2 findObjects];
+        if (items.count > 0) {
+            
+            [self.itemsForDisplay removeAllObjects];
+            [self.itemsForDisplay addObjectsFromArray:moreOfTheSameType];
+            
+        }
+        //// IF USER TYPES IN A GENERIC TERM SUCH AS "SEAFOOD"
+        
+            if (items.count == 0) {
+            
+            PFQuery *query3 = [PFQuery queryWithClassName:@"Item"];
+                //TYPED IN SEAFOOD INSTEAD OF SOMETHING MORE SPECIFIC
+            [query3 whereKey:@"type" matchesKey:@"name" inQuery:query1];
+            NSArray* someObjectsOfThatType = [query3 findObjects];
+
+                if (someObjectsOfThatType.count > 0) {
+                    [self.itemsForDisplay removeAllObjects];
+                    [self.itemsForDisplay addObjectsFromArray:someObjectsOfThatType];
+                }
+        }
+        
+        
+        else {
+            
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            
+            UIAlertController * itemNotFound = [UIAlertController alertControllerWithTitle:@"Item not found" message:@"Sorry none of that item or related items in your area." preferredStyle:UIAlertControllerStyleAlert];
+            [itemNotFound addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [self presentViewController:itemNotFound animated:YES completion:nil];
+                
+            }]];
+            
+            
+        }
+        
+        [self.tableView reloadData];
+
+        
+    }];
     
 }
 

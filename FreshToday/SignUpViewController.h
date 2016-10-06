@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
 
+- (IBAction)isABusiness:(UISwitch *)sender;
 
 - (IBAction)didPressSignUp:(UIButton *)sender;
 

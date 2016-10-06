@@ -12,28 +12,10 @@
 
 
 @dynamic favoriteItems;
-@dynamic location;
+@dynamic currentLocation;
+@dynamic isABusiness;
 
 
-//+ (void)load {
-//    [self registerSubclass];
-//}
-//
-//+ (NSString *)parseClassName {
-//    return @"User";
-//}
-
-
-
-//- (instancetype)initWithUsername:(NSString *)username password:(NSString *)password email:(NSString *)email location:(PFGeoPoint *)location
-//{
-//    self = [super init];
-//    if (self) {
-//        
-//    }
-//    return self;
-//}
-//
 
 
 
