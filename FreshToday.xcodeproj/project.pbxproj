@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3930DB9F1DA598A900AA6E6F /* NormalLocationPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3930DB9E1DA598A900AA6E6F /* NormalLocationPermission.m */; };
+		3930DBA21DA598C700AA6E6F /* BlurredLocationPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 3930DBA11DA598C700AA6E6F /* BlurredLocationPermission.m */; };
+		3930DBA41DA5BD4E00AA6E6F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3930DBA31DA5BD4E00AA6E6F /* CoreLocation.framework */; };
+		39A090831DA499A700C8247C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39A090811DA499A700C8247C /* Main.storyboard */; };
+		39A090851DA4B4F900C8247C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A090841DA4B4F900C8247C /* MapKit.framework */; };
 		39E0FC031DA2DB7700CA2E4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC021DA2DB7700CA2E4E /* main.m */; };
 		39E0FC061DA2DB7700CA2E4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC051DA2DB7700CA2E4E /* AppDelegate.m */; };
 		39E0FC091DA2DB7700CA2E4E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC081DA2DB7700CA2E4E /* ViewController.m */; };
-		39E0FC0C1DA2DB7700CA2E4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39E0FC0A1DA2DB7700CA2E4E /* Main.storyboard */; };
 		39E0FC0E1DA2DB7700CA2E4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39E0FC0D1DA2DB7700CA2E4E /* Assets.xcassets */; };
 		39E0FC111DA2DB7700CA2E4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39E0FC0F1DA2DB7700CA2E4E /* LaunchScreen.storyboard */; };
 		39E0FC1A1DA2DD3C00CA2E4E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E0FC191DA2DD3C00CA2E4E /* User.m */; };
@@ -25,6 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3930DB9D1DA598A900AA6E6F /* NormalLocationPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalLocationPermission.h; sourceTree = "<group>"; };
+		3930DB9E1DA598A900AA6E6F /* NormalLocationPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalLocationPermission.m; sourceTree = "<group>"; };
+		3930DBA01DA598C700AA6E6F /* BlurredLocationPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurredLocationPermission.h; sourceTree = "<group>"; };
+		3930DBA11DA598C700AA6E6F /* BlurredLocationPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurredLocationPermission.m; sourceTree = "<group>"; };
+		3930DBA31DA5BD4E00AA6E6F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		39A090821DA499A700C8247C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		39A090841DA4B4F900C8247C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		39B654FC1DA44EA200FA2FE8 /* favoriteItemProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = favoriteItemProtocol.h; sourceTree = "<group>"; };
 		39E0FBFE1DA2DB7700CA2E4E /* FreshToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreshToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39E0FC021DA2DB7700CA2E4E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -32,7 +43,6 @@
 		39E0FC051DA2DB7700CA2E4E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		39E0FC071DA2DB7700CA2E4E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		39E0FC081DA2DB7700CA2E4E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		39E0FC0B1DA2DB7700CA2E4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39E0FC0D1DA2DB7700CA2E4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39E0FC101DA2DB7700CA2E4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39E0FC121DA2DB7700CA2E4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3930DBA41DA5BD4E00AA6E6F /* CoreLocation.framework in Frameworks */,
+				39A090851DA4B4F900C8247C /* MapKit.framework in Frameworks */,
 				E1B3B3BBEC6439CBC122A618 /* Pods_FreshToday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,9 +104,9 @@
 			children = (
 				39E0FC201DA2F63000CA2E4E /* Model */,
 				39E0FC211DA2F64300CA2E4E /* View */,
-				39E0FC0A1DA2DB7700CA2E4E /* Main.storyboard */,
 				39E0FC0D1DA2DB7700CA2E4E /* Assets.xcassets */,
 				39E0FC0F1DA2DB7700CA2E4E /* LaunchScreen.storyboard */,
+				39A090811DA499A700C8247C /* Main.storyboard */,
 				39E0FC121DA2DB7700CA2E4E /* Info.plist */,
 				39E0FC011DA2DB7700CA2E4E /* Supporting Files */,
 			);
@@ -140,6 +152,10 @@
 				39E0FC2C1DA2F82300CA2E4E /* ListOfItemsViewController.m */,
 				39E0FC2E1DA2F84200CA2E4E /* DetailsViewController.h */,
 				39E0FC2F1DA2F84200CA2E4E /* DetailsViewController.m */,
+				3930DB9D1DA598A900AA6E6F /* NormalLocationPermission.h */,
+				3930DB9E1DA598A900AA6E6F /* NormalLocationPermission.m */,
+				3930DBA01DA598C700AA6E6F /* BlurredLocationPermission.h */,
+				3930DBA11DA598C700AA6E6F /* BlurredLocationPermission.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -147,6 +163,8 @@
 		5D389645E81F5E5205E3E38B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3930DBA31DA5BD4E00AA6E6F /* CoreLocation.framework */,
+				39A090841DA4B4F900C8247C /* MapKit.framework */,
 				CCBFF50FFFAA3F7C61986212 /* Pods_FreshToday.framework */,
 			);
 			name = Frameworks;
@@ -196,6 +214,11 @@
 					39E0FBFD1DA2DB7700CA2E4E = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -222,9 +245,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39A090831DA499A700C8247C /* Main.storyboard in Resources */,
 				39E0FC111DA2DB7700CA2E4E /* LaunchScreen.storyboard in Resources */,
 				39E0FC0E1DA2DB7700CA2E4E /* Assets.xcassets in Resources */,
-				39E0FC0C1DA2DB7700CA2E4E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,12 +306,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3930DB9F1DA598A900AA6E6F /* NormalLocationPermission.m in Sources */,
 				39E0FC2D1DA2F82300CA2E4E /* ListOfItemsViewController.m in Sources */,
 				39E0FC1F1DA2F33A00CA2E4E /* Item.m in Sources */,
 				39E0FC1A1DA2DD3C00CA2E4E /* User.m in Sources */,
 				39E0FC241DA2F66700CA2E4E /* SignUpViewController.m in Sources */,
 				39E0FC091DA2DB7700CA2E4E /* ViewController.m in Sources */,
 				39E0FC3A1DA33E1800CA2E4E /* ItemTableViewCell.m in Sources */,
+				3930DBA21DA598C700AA6E6F /* BlurredLocationPermission.m in Sources */,
 				39E0FC061DA2DB7700CA2E4E /* AppDelegate.m in Sources */,
 				39E0FC331DA31B6800CA2E4E /* LocationManager.m in Sources */,
 				39E0FC301DA2F84200CA2E4E /* DetailsViewController.m in Sources */,
@@ -300,10 +325,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		39E0FC0A1DA2DB7700CA2E4E /* Main.storyboard */ = {
+		39A090811DA499A700C8247C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				39E0FC0B1DA2DB7700CA2E4E /* Base */,
+				39A090821DA499A700C8247C /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

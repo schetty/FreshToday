@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "favoriteItemProtocol.h"
 
-@interface HomeViewController : UIViewController <UITableViewDelegate, FavoriteItemDelegate>
+@interface HomeViewController : UIViewController <UITableViewDelegate, ItemCellDelegate>
 
-@property (strong, nonatomic) IBOutlet UITextField *searchTextField;
 
-@property (strong, nonatomic) IBOutlet UITextField *locationTextField;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) 
+
+
 
 
 //View controller has a delegate... let it know if the user has clicked the heart so it can add it to the user's favorite items array ///// PASS THE ITEM ITSELF

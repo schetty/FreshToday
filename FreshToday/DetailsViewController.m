@@ -10,7 +10,12 @@
 
 @interface DetailsViewController () <MKMapViewDelegate, SharedLocationDelegate>
 
+@property (strong, nonatomic) IBOutlet UILabel *itemNameLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *businessNameLabel;
+
 @property (nonatomic) CLLocationManager* locationManager;
+
 @property BOOL isSetUp;
 
 
@@ -32,11 +37,24 @@
     //    [self.locationManager startLocationMonitoring];
     
     self.mapView.showsUserLocation = YES;
-    self.mapView.delegate = self;}
+    self.mapView.delegate = self;
+    
+    
+    /// LABELS
+    self.itemNameLabel.text = self.item.name;
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"stuff");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    
+
 }
 
 

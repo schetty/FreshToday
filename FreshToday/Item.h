@@ -13,7 +13,7 @@
 
 @property (nonatomic) NSString * name;
 @property (nonatomic) NSString * type;
-@property (nonatomic) BOOL isAFavorite;
+//@property (nonatomic) BOOL isAFavorite;
 
 -(instancetype)initWithName: (NSString *) name andType:(NSString *)type;
 

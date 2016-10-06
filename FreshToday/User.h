@@ -17,7 +17,7 @@
 
 @property (nonatomic) PFRelation <Item *>* favoriteItems;
 @property (nonatomic) PFGeoPoint * location;
-@property User *currentUser;
+//@property User *currentUser;
 
 //-(void)signUp;
 //-(void) setLocation:(PFGeoPoint *)location;

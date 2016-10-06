@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface SignUpViewController : UIViewController
 
 
@@ -16,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
+
 
 - (IBAction)didPressSignUp:(UIButton *)sender;
 

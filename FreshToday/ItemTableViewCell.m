@@ -34,8 +34,10 @@
 
 
 - (IBAction)favoriteItemButtonPressed:(UIButton *)sender{
-    [self.delegate addItemToFavoritesInParse];
     
+    if (self.delegate /* && [self.delegate respondsToSelector:@selector(didClickOnCellAtIndex:_cellIndex withItemCell:self)] */) {
+        [self.delegate didClickOnCellAtIndex:self.cellIndex withItemCell:self];
+    }
 }
 
 @end

@@ -17,9 +17,10 @@
 
 - (IBAction)favoriteItemButtonPressed:(UIButton *)sender;
 
-@property (weak, nonatomic) UITableView *tableView;
+//@property (weak, nonatomic) UITableView *tableView;
 
-@property (nonatomic) id<FavoriteItemDelegate>delegate;
+@property (nonatomic) id<ItemCellDelegate>delegate;
 
+@property (assign, nonatomic) NSInteger cellIndex;
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LocationManager.h"
+#import "Item.h"
 @import MapKit;
 @import CoreLocation;
 
@@ -15,5 +16,6 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
+@property (nonatomic) Item* item;
 
 @end
