@@ -43,7 +43,7 @@
         
         // show the signup or login screen.
         [User logInWithUsernameInBackground:@"joe" password:@"smith" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-            NSLog(@"couldn't login");
+            NSLog(@"couldn't login %@", error);
         }];
         
     }

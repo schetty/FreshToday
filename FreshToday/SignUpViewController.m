@@ -30,26 +30,20 @@
     self.user.password = self.passwordTextField.text;
     self.user.email = self.emailTextField.text;
 
+
+        
+        [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+            
+                NSLog(@"Succeeded LOGGIN IN %@", self.user);
+                
+            } else {
+                NSLog(@"this is the error: %@", error);
+                [self errorAlert];
+            
+            }
+        }];
     
-    [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (!error) {
-            
-            
-            User *user = [[User alloc] init];
-            
-            [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (succeeded) NSLog(@"YAY!!");
-            }];
-        }
-        
-        
-        else {
-            
-            [self errorAlert];
-            
-        }
-        
-    }];
 }
 
 - (void) errorAlert {

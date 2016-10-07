@@ -49,20 +49,9 @@ static const NSString * storyboardName = @"MainStoryboard";
     
     
     if (([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied) || ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined) || [CLLocationManager authorizationStatus]==kCLAuthorizationStatusRestricted){
-        //
-        //                do {
-        //                    [_locationManager requestWhenInUseAuthorization];
-        //
-        //                } while ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied);
-        //
-        UIAlertController * deniedAlert = [UIAlertController alertControllerWithTitle:@"App Permission Denied" message:@"Please enable location services so we can find you food suppliers near you" preferredStyle:UIAlertControllerStyleAlert];
-        [deniedAlert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-            [self presentViewController:deniedAlert animated:NO completion:nil];
-        }]];
-        
-        
-        
+    
+        NSLog(@"denies");
+
         
         
     }
@@ -125,7 +114,7 @@ static const NSString * storyboardName = @"MainStoryboard";
         
         destinationViewController.location = location;
         
-        NSLog(@"Inside segue to HomeViewController");
+        NSLog(@"Inside segue to BusinessViewController");
         
     }
     
