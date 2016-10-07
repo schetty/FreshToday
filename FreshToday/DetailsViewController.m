@@ -8,17 +8,21 @@
 
 #import "DetailsViewController.h"
 
-@interface DetailsViewController () <MKMapViewDelegate, SharedLocationDelegate>
+@interface DetailsViewController () <MKMapViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *itemNameLabel;
 
 @property (strong, nonatomic) IBOutlet UILabel *businessNameLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *itemDescLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *addressLabel;
+
 @property (nonatomic) CLLocationManager* locationManager;
 
 @property BOOL isSetUp;
 
-@property (strong, nonatomic) IBOutlet UIImageView *businessImageView;
+
 
 
 @end
@@ -43,7 +47,12 @@
     
     /// LABELS
     self.itemNameLabel.text = self.item.name;
+    self.itemDescLabel.text = self.item.itemDescription;
+    self.businessNameLabel.text = self.item.type;
+    
 }
+
+
 
 
 - (void)viewDidAppear:(BOOL)animated {

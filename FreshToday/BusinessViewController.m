@@ -17,8 +17,10 @@
 
 
 @property (nonatomic) Item * item;
+@property (nonatomic) NSString * addressStr;
+@property (nonatomic) NSString * descStr;
 
-- (IBAction)didPressUpload:(UIButton *)sender;
+
 
 @end
 
@@ -38,20 +40,23 @@
     if(user != nil) {
         
         self.item = [Item objectWithClassName:@"Item"];
-        self.item[@"name"] = self.itemTitleTextField.text;
-        self.item[@"description"] = self.itemDescriptionTextField.text;
-        self.item[@"type"] = self.itemTypeTextField.text;
-        [self addLocationToItem];
+        self.item.name = self.itemTitleTextField.text;
+        self.item.itemDescription = self.itemDescriptionTextField.text;
+        self.item.type = self.itemTypeTextField.text;
+        self.addressStr = self.itemLocaationTextField.text;
         [self.item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 NSLog(@"YAAAAAAY");
-          
+                [self addLocationToItem];
+
             } else {
                 NSLog(@"UH OH!!");
             }
             
             
         }];
+        
+
         
         
 //        [self performSegueWithIdentifier:@"showHome" sender:sender];
@@ -72,7 +77,7 @@
             CLPlacemark *placemark = [placemarks firstObject];
             CLLocation *location = placemark.location;
             NSLog(@"Location %@ stored", placemark);
-            self.item[@"location"] = [PFGeoPoint geoPointWithLocation:placemark.location];
+            self.item[@"location"] = [PFGeoPoint geoPointWithLocation:location];
             [self.item save];
         }
     }];
@@ -81,6 +86,8 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     HomeViewController *homeVC = [segue destinationViewController];
     homeVC.location = self.location;
+//    homeVC.addressStr = self.addressStr;
+//    homeVC.descStr = self.descStr;
 }
 
 

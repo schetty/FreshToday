@@ -17,7 +17,6 @@
 
 @property (nonatomic) PFRelation <Item *>* favoriteItems;
 @property (nonatomic) PFGeoPoint * currentLocation;
-@property (nonatomic) NSString * email;
 
 @property BOOL isABusiness;
 

@@ -16,6 +16,9 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) CLLocation *location;
 
+//@property (nonatomic) NSString * addressStr;
+//@property (nonatomic) NSString * descStr;
+
 
 
 

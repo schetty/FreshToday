@@ -10,7 +10,7 @@
 #import "LocationManager.h"
 
 
-@interface ViewController : UIViewController <SharedLocationDelegate>
+@interface ViewController : UIViewController
 
 
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;

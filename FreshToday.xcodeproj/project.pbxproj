@@ -11,6 +11,7 @@
 		3930DBA41DA5BD4E00AA6E6F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3930DBA31DA5BD4E00AA6E6F /* CoreLocation.framework */; };
 		3930DBA71DA5F56700AA6E6F /* AlternativeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3930DBA61DA5F56700AA6E6F /* AlternativeItem.m */; };
 		3930DBAA1DA6E1A700AA6E6F /* BusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3930DBA91DA6E1A700AA6E6F /* BusinessViewController.m */; };
+		399992241DA78A390095B251 /* Rectangle 24.png in Resources */ = {isa = PBXBuildFile; fileRef = 399992231DA78A390095B251 /* Rectangle 24.png */; };
 		39A090831DA499A700C8247C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39A090811DA499A700C8247C /* Main.storyboard */; };
 		39A090851DA4B4F900C8247C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A090841DA4B4F900C8247C /* MapKit.framework */; };
 		39C5CB9B1DA722F20010F7C3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C5CB9A1DA722F20010F7C3 /* Bolts.framework */; };
@@ -37,6 +38,7 @@
 		3930DBA61DA5F56700AA6E6F /* AlternativeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlternativeItem.m; sourceTree = "<group>"; };
 		3930DBA81DA6E1A700AA6E6F /* BusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessViewController.h; sourceTree = "<group>"; };
 		3930DBA91DA6E1A700AA6E6F /* BusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessViewController.m; sourceTree = "<group>"; };
+		399992231DA78A390095B251 /* Rectangle 24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle 24.png"; sourceTree = "<group>"; };
 		39A090821DA499A700C8247C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39A090841DA4B4F900C8247C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		39B654FC1DA44EA200FA2FE8 /* favoriteItemProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = favoriteItemProtocol.h; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				39E0FC201DA2F63000CA2E4E /* Model */,
 				39E0FC211DA2F64300CA2E4E /* View */,
 				39E0FC0D1DA2DB7700CA2E4E /* Assets.xcassets */,
+				399992231DA78A390095B251 /* Rectangle 24.png */,
 				39E0FC0F1DA2DB7700CA2E4E /* LaunchScreen.storyboard */,
 				39A090811DA499A700C8247C /* Main.storyboard */,
 				39E0FC121DA2DB7700CA2E4E /* Info.plist */,
@@ -251,6 +254,7 @@
 			files = (
 				39A090831DA499A700C8247C /* Main.storyboard in Resources */,
 				39E0FC111DA2DB7700CA2E4E /* LaunchScreen.storyboard in Resources */,
+				399992241DA78A390095B251 /* Rectangle 24.png in Resources */,
 				39E0FC0E1DA2DB7700CA2E4E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +370,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -413,6 +418,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

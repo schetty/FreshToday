@@ -48,16 +48,14 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self getItemsFromParse];
+    [self getFavoriteItemsFromParse];
     [self getUserLocation];
     
+     [self setLocationForUser];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.tableView reloadData];
-    [self setLocationForUser];
-
 }
 
 
@@ -76,9 +74,21 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ItemTableViewCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"itemCell"];
     
+    Item * item;
+//    if (user.favoriteItems) {
+//    item = user.favoriteItems;
+//       item = _itemsForDisplay[indexPath.row];
+//
+//    }
+//    else {
+       item = _itemsForDisplay[indexPath.row];
+
+//    }
     
-    Item *item = _itemsForDisplay[indexPath.row];
     itemCell.itemNameLabel.text = item.name;
+    itemCell.distanceLabel.text = @"";
+/////// do this if have time
+    NSLog(@"%@", item.itemDescription);
     
     itemCell.delegate = self;
     itemCell.cellIndex = indexPath.row;
@@ -139,6 +149,33 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
     }];
 }
 
+- (void)getFavoriteItemsFromParse {
+    
+    PFUser *user = [PFUser currentUser];
+    PFRelation *relation = [user relationForKey:@"favoriteItems"];
+    PFQuery *query = [relation query];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *items, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu places.", (unsigned long) items.count);
+            for (Item *item in items) {
+                
+                NSLog(@"%@", item.objectId);
+                
+            }
+            [self.itemsForDisplay removeAllObjects];
+            self.itemsForDisplay = [items mutableCopy];
+            [self.tableView reloadData];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            
+             [self getItemsFromParse];
+        }
+    }];
+}
+
 
 - (void)addItemToFavoritesInParse {
     
@@ -170,6 +207,14 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
 
 - (void) getUserLocation {
     
+//    PFGeoPoint * currentLoc;
+//    
+//    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *geoPoint, NSError *error) {
+//        if (!error) {
+//            NSLog(@"%@", geoPoint);
+//            
+//        }
+//    }];
     
     CLGeocoder *coder= [[CLGeocoder alloc] init];
     [coder reverseGeocodeLocation:self.location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -194,11 +239,12 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
     
     User *user = User.currentUser;
     
-    if (user != nil){
+    if (user != nil && self.location != nil) {
         //send the PFGeoPoint to Parse
         user.currentLocation = [PFGeoPoint geoPointWithLocation:self.location];
         [user addObject:user.currentLocation forKey:@"userLocation"];
         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            
             if (succeeded) {
                 
                 NSLog(@"successfully sent geopoint to user in parse");

@@ -21,7 +21,6 @@
 
 @property (strong, nonatomic) IBOutlet UISwitch *switchValue;
 
-- (IBAction)isABusiness:(UISwitch *)sender;
 
 - (IBAction)didPressSignUp:(UIButton *)sender;
 

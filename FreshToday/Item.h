@@ -18,6 +18,6 @@
 
 //@property (nonatomic) BOOL isAFavorite;
 
--(instancetype)initWithName: (NSString *) name aDescription:(NSString *)itemDescription aLocation:(PFGeoPoint *)location andType:(NSString *)type;
+//-(instancetype)initWithName: (NSString *) name aDescription:(NSString *)itemDescription aLocation:(PFGeoPoint *)location andType:(NSString *)type;
 
 @end

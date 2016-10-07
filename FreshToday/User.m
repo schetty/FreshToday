@@ -16,9 +16,18 @@
 @dynamic isABusiness;
 @dynamic email;
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
 
-
-
++ (void)load {
+    [self registerSubclass];
+}
 
 
 @end
