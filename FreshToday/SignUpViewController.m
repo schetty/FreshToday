@@ -8,22 +8,30 @@
 
 #import "SignUpViewController.h"
 #import "User.h"
+#import "BlurredLocationPermission.h"
+#import <Bolts/Bolts.h>
 
 
 @interface SignUpViewController ()
 -(void) signUp;
+
+@property (nonatomic) User *user;
+@property (nonatomic) BlurredLocationPermission * blurredLocationPermissionView;
+
 @end
 
 @implementation SignUpViewController
 
 -(void) signUp {
-    User *user = [User user];
-    user.username = self.nameTextField.text;
-    user.password = self.passwordTextField.text;
-    user.email = self.emailTextField.text;
+    
+   self.user = [User user];
+    
+    self.user.username = self.nameTextField.text;
+    self.user.password = self.passwordTextField.text;
+    self.user.email = self.emailTextField.text;
 
     
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+    [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {
             
             
@@ -37,22 +45,55 @@
         
         else {
             
-            //            NSString *errorString = [error userInfo][@"error"];
-            UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was an error." preferredStyle:UIAlertControllerStyleAlert];
-            
-            [errorAlert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                
-                [self presentViewController:errorAlert animated:YES completion:nil];
-                
-            }]];
+            [self errorAlert];
             
         }
         
     }];
 }
 
-- (IBAction)isABusiness:(UISwitch *)sender {
+- (void) errorAlert {
+    
+UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was an error." preferredStyle:UIAlertControllerStyleAlert];
+
+[errorAlert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    
+    [self presentViewController:errorAlert animated:YES completion:nil];
+    
+}]];
+    
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"segueToGetPermission"]) {
+        
+        self.blurredLocationPermissionView = [segue destinationViewController];
+
+        
+        if (self.switchValue.on) {
+            
+            self.blurredLocationPermissionView.isABusiness = YES;
+            
+            NSLog(@"PASSING SEGUE THAT THIS USER IS INDEED, A BUSINESS");
+            
+        }
+        else {
+            
+            self.blurredLocationPermissionView.isABusiness = NO;
+            
+            NSLog(@"a customer");
+        }
+        
+    }
+    
+    else {
+        [self errorAlert];
+        NSLog(@"something went wrong");
+    }
+}
+
+
 
 - (IBAction)didPressSignUp:(UIButton *)sender {
     [self signUp];

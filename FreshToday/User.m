@@ -14,6 +14,8 @@
 @dynamic favoriteItems;
 @dynamic currentLocation;
 @dynamic isABusiness;
+@dynamic email;
+
 
 
 

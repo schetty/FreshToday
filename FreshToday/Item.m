@@ -13,13 +13,16 @@
 
 @dynamic type;
 @dynamic name;
+@dynamic itemDescription;
+@dynamic location;
 
-- (instancetype)initWithName:(NSString *)name andType:(NSString *)type
-{
+- (instancetype)initWithName:(NSString *)name aDescription:(NSString *)itemDescription aLocation:(PFGeoPoint *) location andType:(NSString *)type  {
     self = [super init];
     if (self) {
         name = name;
         type = type;
+        itemDescription = itemDescription;
+        location = location;
     }
     return self;
 }

@@ -7,9 +7,16 @@
 //
 
 #import "BusinessViewController.h"
+#import "HomeViewController.h"
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import "Item.h"
+@import CoreLocation;
 
 @interface BusinessViewController ()
+
+
+@property (nonatomic) Item * item;
 
 - (IBAction)didPressUpload:(UIButton *)sender;
 
@@ -25,22 +32,54 @@
 
 
 - (IBAction)didPressAdd:(UIButton *)sender {
+    User *user = [User currentUser];
+
+
+    if(user != nil) {
+        
+        self.item = [Item objectWithClassName:@"Item"];
+        self.item[@"name"] = self.itemTitleTextField.text;
+        self.item[@"description"] = self.itemDescriptionTextField.text;
+        self.item[@"type"] = self.itemTypeTextField.text;
+        [self addLocationToItem];
+        [self.item saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                NSLog(@"YAAAAAAY");
+          
+            } else {
+                NSLog(@"UH OH!!");
+            }
+            
+            
+        }];
+        
+        
+        HomeViewController *destinationViewController;
+        [self performSegueWithIdentifier:@"showHome" sender:sender];
+        destinationViewController.location = self.location;
+    }
+    
+    else {
+        NSLog(@"WTF");
+    }
 }
 
-//- (IBAction)didPressUpload:(UIButton *)sender {
-//    
-//    UIImagePickerController *pickerLibrary = [[UIImagePickerController alloc] init];
-//    pickerLibrary.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//    pickerLibrary.delegate = self;
-//    [self presentViewController:pickerLibrary animated:YES completion:nil];
-//    
-//    
-//}
-//
-//- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-//{
-//    UIImage *myImage = image;
-//}
+
+
+- (void) addLocationToItem {
+    NSString *address = self.itemLocaationTextField.text;
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder geocodeAddressString:address completionHandler:^(NSArray *placemarks, NSError *error) {
+        if (placemarks.count > 0) {
+            CLPlacemark *placemark = [placemarks firstObject];
+            CLLocation *location = placemark.location;
+            NSLog(@"Location %@ stored", placemark);
+            self.item[@"location"] = [PFGeoPoint geoPointWithLocation:placemark.location];
+            
+        }
+    }];
+}
+
 
 
 @end

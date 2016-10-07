@@ -15,6 +15,13 @@
 
 @property (strong, nonatomic) IBOutlet UITextView *itemDescriptionTextField;
 
+@property (strong, nonatomic) IBOutlet UITextField *itemTypeTextField;
+
+@property (strong, nonatomic) IBOutlet UITextField *itemLocaationTextField;
+
+@property (strong, nonatomic) CLLocation *location;
+
+
 - (IBAction)didPressAdd:(UIButton *)sender;
 
 @end

@@ -20,6 +20,8 @@
 @property (nonatomic) Item * selectedItem;
 @property (nonatomic) Item * cellSelectedItem;
 @property (nonatomic) DetailsViewController * destinationViewController;
+@property (nonatomic) UIAlertController * itemNotFound;
+
 
 
 //for the SEARCH bar
@@ -48,13 +50,13 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
     
     [self getItemsFromParse];
     [self getUserLocation];
-    [self setLocationForUser];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
+    [self setLocationForUser];
 
 }
 
@@ -83,6 +85,7 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
     
     return itemCell;
 }
+
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath  {
@@ -246,12 +249,16 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
 - (void) queryItemFromParse {
     NSString * searchItemName = self.searchItemTextField.text;
     
+    self.itemNotFound = [UIAlertController alertControllerWithTitle:@"Item not found" message:@"Sorry none of that item or related items in your area." preferredStyle:UIAlertControllerStyleAlert];
+    [self.itemNotFound addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+    
     PFQuery *query1 = [PFQuery queryWithClassName:@"Item"];
     [query1 whereKey:@"name" equalTo:searchItemName];
     [query1 findObjectsInBackgroundWithBlock:^(NSArray *items, NSError *error) {
+        
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved item name.");
+            NSLog(@"I found an item with name %@.", items);
             NSString * searchItemType = [[NSString alloc] init];
             
             for (Item * item in items) {
@@ -259,50 +266,46 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
                 NSLog(@"%@", searchItemType);
             }
             
-        }
-        
-        PFQuery *query2 = [PFQuery queryWithClassName:@"Item"];
-        [query2 whereKey:@"type" matchesKey:@"type" inQuery:query1];
-        NSArray* moreOfTheSameType = [query2 findObjects];
-        if (items.count > 0) {
-            
-            [self.itemsForDisplay removeAllObjects];
-            [self.itemsForDisplay addObjectsFromArray:moreOfTheSameType];
-            
-        }
-        //// IF USER TYPES IN A GENERIC TERM SUCH AS "SEAFOOD"
-        
+            PFQuery *query2 = [PFQuery queryWithClassName:@"Item"];
+            [query2 whereKey:@"type" matchesKey:@"type" inQuery:query1];
+            NSArray* moreOfTheSameType = [query2 findObjects];
+            if (items.count > 0) {
+                
+                [self.itemsForDisplay removeAllObjects];
+                [self.itemsForDisplay addObjectsFromArray:moreOfTheSameType];
+                
+            }
+            //// IF USER TYPES IN A GENERIC TERM SUCH AS "SEAFOOD"
             if (items.count == 0) {
-            
-            PFQuery *query3 = [PFQuery queryWithClassName:@"Item"];
+                
+                PFQuery *query3 = [PFQuery queryWithClassName:@"Item"];
                 //TYPED IN SEAFOOD INSTEAD OF SOMETHING MORE SPECIFIC
-            [query3 whereKey:@"type" matchesKey:@"name" inQuery:query1];
-            NSArray* someObjectsOfThatType = [query3 findObjects];
-
+                [query3 whereKey:@"type" equalTo:searchItemName];
+                NSArray* someObjectsOfThatType = [query3 findObjects];
+                
                 if (someObjectsOfThatType.count > 0) {
                     [self.itemsForDisplay removeAllObjects];
                     [self.itemsForDisplay addObjectsFromArray:someObjectsOfThatType];
                 }
+            }
         }
         
         
-        else {
+        
+    
+            else {
             
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
             
-            UIAlertController * itemNotFound = [UIAlertController alertControllerWithTitle:@"Item not found" message:@"Sorry none of that item or related items in your area." preferredStyle:UIAlertControllerStyleAlert];
-            [itemNotFound addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-                [self presentViewController:itemNotFound animated:YES completion:nil];
-                
-            }]];
+            
+            [self presentViewController:self.itemNotFound animated:YES completion:nil];
             
             
         }
         
         [self.tableView reloadData];
-
+        
         
     }];
     

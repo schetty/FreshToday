@@ -12,4 +12,7 @@
 
 @interface BlurredLocationPermission : UIViewController
 
+@property BOOL isABusiness;
+
+
 @end

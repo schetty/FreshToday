@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *itemNameLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *distanceLabel;
 
 - (IBAction)favoriteItemButtonPressed:(UIButton *)sender;
 

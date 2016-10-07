@@ -8,6 +8,7 @@
 
 #import "BlurredLocationPermission.h"
 #import "HomeViewController.h"
+#import "BusinessViewController.h"
 
 @interface BlurredLocationPermission () <CLLocationManagerDelegate>
 
@@ -35,7 +36,13 @@ static const NSString * storyboardName = @"MainStoryboard";
     
     [super viewDidAppear:animated];
     
-    [_locationManager requestWhenInUseAuthorization];
+    double delayInSeconds = 3.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [_locationManager requestWhenInUseAuthorization];
+
+    });
+    
     [_locationManager startUpdatingLocation];
     
     NSLog(@"Location Services Enabled");
@@ -71,11 +78,22 @@ static const NSString * storyboardName = @"MainStoryboard";
 
 - (void)segue:(CLLocation *)location{
     
-    [self performSegueWithIdentifier:@"showHomeVC" sender:location];
+    if (self.isABusiness == NO) {
+        [self performSegueWithIdentifier:@"showHomeVC" sender:location];
+
+    }
+    if (self.isABusiness == YES) {
+        [self performSegueWithIdentifier:@"segueToBusinessView" sender:location];
+        
+        
+    }
     
+    else {
+        NSLog(@"SUMTHIN WRONG!!!");
+    }
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     
     [_locationManager stopUpdatingLocation];
     
@@ -90,8 +108,8 @@ static const NSString * storyboardName = @"MainStoryboard";
     
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"showHomeVC"]) {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if (self.isABusiness == NO && [segue.identifier isEqualToString:@"showHomeVC"]) {
         HomeViewController *destinationViewController = [segue destinationViewController];
         CLLocation *location = (CLLocation *) sender;
         
@@ -101,7 +119,18 @@ static const NSString * storyboardName = @"MainStoryboard";
         
     }
     
+    if (self.isABusiness == YES && [segue.identifier isEqualToString:@"segueToBusinessView"]) {
+        BusinessViewController *destinationViewController = [segue destinationViewController];
+        CLLocation *location = (CLLocation *) sender;
+        
+        destinationViewController.location = location;
+        
+        NSLog(@"Inside segue to HomeViewController");
+        
+    }
+    
 }
+
 
 
 

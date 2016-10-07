@@ -13,8 +13,11 @@
 
 @property (nonatomic) NSString * name;
 @property (nonatomic) NSString * type;
+@property (nonatomic) NSString * itemDescription;
+@property (nonatomic) PFGeoPoint * location;
+
 //@property (nonatomic) BOOL isAFavorite;
 
--(instancetype)initWithName: (NSString *) name andType:(NSString *)type;
+-(instancetype)initWithName: (NSString *) name aDescription:(NSString *)itemDescription aLocation:(PFGeoPoint *)location andType:(NSString *)type;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
+
 @interface SignUpViewController : UIViewController
 
 
@@ -17,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
+
+@property (strong, nonatomic) IBOutlet UISwitch *switchValue;
 
 - (IBAction)isABusiness:(UISwitch *)sender;
 
