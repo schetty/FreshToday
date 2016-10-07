@@ -179,6 +179,9 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
        
         
         self.locationTextField.text = [NSString stringWithFormat:@"in %@", placemark.locality];
+        NSLog(@"current user is %@ ", [User currentUser]);
+        NSLog(@"Placemark : %@ ", placemark.locality);
+
     }];
     
     

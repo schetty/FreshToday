@@ -54,9 +54,7 @@
         }];
         
         
-        HomeViewController *destinationViewController;
-        [self performSegueWithIdentifier:@"showHome" sender:sender];
-        destinationViewController.location = self.location;
+//        [self performSegueWithIdentifier:@"showHome" sender:sender];
     }
     
     else {
@@ -80,6 +78,10 @@
     }];
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    HomeViewController *homeVC = [segue destinationViewController];
+    homeVC.location = self.location;
+}
 
 
 @end
