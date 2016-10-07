@@ -8,7 +8,12 @@
 
 #import "DetailsViewController.h"
 
-@interface DetailsViewController () <MKMapViewDelegate>
+@interface DetailsViewController () <MKMapViewDelegate, MKAnnotation>{
+    
+    NSString *title;
+    NSString *subtitle;
+    CLLocationCoordinate2D coordinate;
+}
 
 @property (strong, nonatomic) IBOutlet UILabel *itemNameLabel;
 
@@ -19,6 +24,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 
 @property (nonatomic) CLLocationManager* locationManager;
+
+@property (nonatomic, assign)CLLocationCoordinate2D coordinate;
+
 
 @property BOOL isSetUp;
 
@@ -49,6 +57,8 @@
     self.itemNameLabel.text = self.item.name;
     self.itemDescLabel.text = self.item.itemDescription;
     self.businessNameLabel.text = self.item.type;
+    self.addressLabel.text = @"";
+    [self getLocationOfItem];
     
 }
 
@@ -59,21 +69,34 @@
     NSLog(@"stuff");
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+
+- (void) getLocationOfItem {
     
+
+    PFGeoPoint *point = self.item[@"location"];
     
+
+    CLLocation *place = [[CLLocation alloc] initWithLatitude:point.latitude longitude:point.longitude];
+
+    self.coordinate = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude);
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation.coordinate = self.coordinate;
+    [self.mapView addAnnotation:annotation];
+    [self.mapView setCenterCoordinate:self.coordinate animated:YES];
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.005, 0.005);
+    MKCoordinateRegion region = MKCoordinateRegionMake(place.coordinate, span);
+    [self.mapView setRegion:region animated:YES];
+
 
 }
-
 
 -(void)locationManager:(CLLocationManager *)locManager didUpdateLocations:(nonnull NSArray<CLLocation *> *)locations {
     NSLog(@"%@ THESE ARE LOCATIONS", locations);
     
     [self.locationManager stopUpdatingLocation];
     
-    
+    return;
     //store location into a variable
     
     CLLocation *aLocation = [locations lastObject];

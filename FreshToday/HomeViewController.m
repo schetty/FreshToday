@@ -22,6 +22,8 @@
 @property (nonatomic) DetailsViewController * destinationViewController;
 @property (nonatomic) UIAlertController * itemNotFound;
 
+@property (strong, nonatomic) IBOutlet UILabel *addedLbl;
+
 
 
 //for the SEARCH bar
@@ -114,9 +116,10 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
     
     
     self.selectedItem =_itemsForDisplay[cellIndex];
-    NSLog(@" HEEEREEEEEEEE %@", self.selectedItem.name);
-    
     [self addItemToFavoritesInParse];
+
+    NSLog(@" HEEEREEEEEEEE ADD THIS %@", self.selectedItem.name);
+    
 }
 
 
@@ -154,6 +157,7 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
     PFUser *user = [PFUser currentUser];
     PFRelation *relation = [user relationForKey:@"favoriteItems"];
     PFQuery *query = [relation query];
+    
         [query findObjectsInBackgroundWithBlock:^(NSArray *items, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -161,6 +165,7 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
             for (Item *item in items) {
                 
                 NSLog(@"%@", item.objectId);
+                
                 
             }
             [self.itemsForDisplay removeAllObjects];
@@ -186,14 +191,19 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
         PFRelation *relation = [user relationForKey:@"favoriteItems"];
         if (self.selectedItem) {
             [relation addObject:self.selectedItem];
+
             [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded) {
                     NSLog(@" User's favorite items are %@ ", user.favoriteItems);
-                    
-                } else {
+                    self.addedLbl.text = @"added to favs!";
+                }
+                
+                    else {
+                        
                     NSLog(@"there is an error");
                 }
             }];
+            
             
         }
         else {
@@ -242,7 +252,7 @@ static NSString * const segueToDetailsViewController = @"segueToDetailsViewContr
     if (user != nil && self.location != nil) {
         //send the PFGeoPoint to Parse
         user.currentLocation = [PFGeoPoint geoPointWithLocation:self.location];
-        [user addObject:user.currentLocation forKey:@"userLocation"];
+//        [user addObject:user.currentLocation forKey:@"userLocation"];
         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             
             if (succeeded) {

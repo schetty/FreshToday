@@ -277,7 +277,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AVZ-dz-02W" id="DO0-4H-RAf">
-                                            <frame key="frameInset" width="375" height="49.5"/>
+                                            <frame key="frameInset" width="375" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbn-pw-slG">
@@ -355,6 +355,11 @@
                                     <action selector="didPressFindButton:" destination="sBq-IT-20d" eventType="touchUpInside" id="AtH-Tl-vR4"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLv-Lu-HgV">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.52549019610000003" green="0.73333333329999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="1" green="0.62352941179999999" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -367,6 +372,8 @@
                             <constraint firstItem="FOd-Zx-qRt" firstAttribute="top" secondItem="JrZ-4P-unT" secondAttribute="bottom" constant="8" symbolic="YES" id="FlY-Z6-8wr"/>
                             <constraint firstAttribute="trailing" secondItem="EyD-9j-Hj0" secondAttribute="trailing" constant="1" id="Nsh-DY-eD2"/>
                             <constraint firstItem="JQj-Zu-uDb" firstAttribute="leading" secondItem="7w2-i7-58t" secondAttribute="leadingMargin" constant="-12" id="PaA-Y0-w1p"/>
+                            <constraint firstItem="DLv-Lu-HgV" firstAttribute="top" secondItem="EyD-9j-Hj0" secondAttribute="bottom" constant="45" id="Qqw-4O-edt"/>
+                            <constraint firstItem="DLv-Lu-HgV" firstAttribute="centerX" secondItem="EyD-9j-Hj0" secondAttribute="centerX" id="Ta2-0T-Svp"/>
                             <constraint firstItem="JrZ-4P-unT" firstAttribute="leading" secondItem="7w2-i7-58t" secondAttribute="leading" id="eO1-iy-vZ6"/>
                             <constraint firstItem="EyD-9j-Hj0" firstAttribute="leading" secondItem="7w2-i7-58t" secondAttribute="leading" constant="1" id="i8s-i9-D1b"/>
                             <constraint firstItem="EyD-9j-Hj0" firstAttribute="top" secondItem="QXx-Z6-UM0" secondAttribute="bottom" constant="1" id="kcC-G2-bcl"/>
@@ -375,6 +382,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addedLbl" destination="DLv-Lu-HgV" id="P4a-Y3-wLX"/>
                         <outlet property="locationTextField" destination="QXx-Z6-UM0" id="oGI-tj-GZh"/>
                         <outlet property="searchItemTextField" destination="JQj-Zu-uDb" id="7SL-zY-RH1"/>
                         <outlet property="tableView" destination="JrZ-4P-unT" id="59y-cp-uGD"/>
@@ -383,7 +391,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="psW-T5-uX6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1075.5" y="-707.5"/>
+            <point key="canvasLocation" x="1074.4000000000001" y="-708.39580209895053"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="9zi-bv-kGo">
@@ -397,12 +405,14 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eau-fI-wH9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Business Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eau-fI-wH9">
+                                <frame key="frameInset" width="1000" height="1000"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mLq-6N-N3c">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mLq-6N-N3c">
+                                <frame key="frameInset" width="1000" height="1000"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="230" id="n19-S9-YeR"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="sd5-oA-Agz"/>
