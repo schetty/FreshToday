@@ -32,9 +32,9 @@
 //        dispatch_async(dispatch_get_main_queue(), ^{
             // do stuff with the user
 //            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            UIViewController *homeViewController = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"Home"];
-            [self presentViewController:homeViewController animated:YES completion:nil];
-            NSLog(@"current user already logged in");
+//            UIViewController *homeViewController = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"Home"];
+//            [self presentViewController:homeViewController animated:YES completion:nil];
+//            NSLog(@"current user already logged in");
 //        });
     }
     
