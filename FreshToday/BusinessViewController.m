@@ -73,7 +73,7 @@
             CLLocation *location = placemark.location;
             NSLog(@"Location %@ stored", placemark);
             self.item[@"location"] = [PFGeoPoint geoPointWithLocation:placemark.location];
-            
+            [self.item save];
         }
     }];
 }
